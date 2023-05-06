@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FaTwitter, FaGithub, FaLaptop, FaLinkedin } from "react-icons/fa"
+import { FaTwitter, FaGithub, FaEnvelope, FaLinkedin } from "react-icons/fa"
 
 export default function Navbar() {
   return (
@@ -14,8 +14,8 @@ export default function Navbar() {
           <Link target="_blank" className="text-white/90 hover:text-white" href="https://www.linkedin.com/in/sayf-ismail/">
             <FaLinkedin />
           </Link>
-          <Link target="_blank" className="text-white/90 hover:text-white" href="https://courses.davegray.codes/">
-            <FaLaptop />
+          <Link target="_blank" className="text-white/90 hover:text-white" href="mailto: sayfcodes@gmail.com">
+            <FaEnvelope />
           </Link>
           <Link target="_blank" className="text-white/90 hover:text-white" href="https://github.com/sayf-ismail">
             <FaGithub />
