@@ -6,10 +6,7 @@ date: '2023-05-06'
 
 ### The goal
 
-So recently I've embarked on some upskilling for work projects, specifically **React Native**, **Typescript** and **GraphQL**. After some quick research into the different minimal skills that a fullstack dev should know at varying levels of difficulty, here's what came up:
-- Beginner:
-- Intermediate:
-- Advanced:
+So recently I've embarked on some upskilling for work projects, specifically **React Native**, **Typescript** and **GraphQL**.
 
 
 
@@ -23,10 +20,17 @@ To assist me I've made use of:
   - "Github Copilot" for autocompletion of code, which actually has been trained on many public tutorials... check it out:
 ![github copilot in action](/images/copilot_demo.gif)
 - Course: [React Native - The Practical Guide \[2023\]
-](https://www.udemy.com/course/react-native-the-practical-guide/)
+](https://www.udemy.com/course/react-native-the-practical-guide/){width}
 
 
-### Tutorial [NFT Marketplace Course](https://youtu.be/_ivIUCSOZ78)
+### Tutorial - [NFT Marketplace Course](https://youtu.be/_ivIUCSOZ78)
+
+This was a basic react native app that gave exposure into basic UI/UX manipulation. One thing I enjoyed learning here was the way the presenter organised his assets, screens and layouts. His predefined COLORS, SHADOWS, FONTS and other assets really helped keep the code clean, making it a pleasure to build.
+
+To try out the app, first download Expo Go here:
+
+[Demo App](https://expo.dev/@sayfcodes/nft_marketplace?serviceType=classic&distribution=expo-go)
+![NFT Marketplace gif](/images/nft_mktplace.gif)
 
   Core Components learned:
   - import {
@@ -49,11 +53,30 @@ To assist me I've made use of:
   - import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
   - import { useFonts } from 'expo-font';
 
+### Tutorial - [UPS 2.0](https://www.youtube.com/live/hvvWv2GLWss?feature=share)
+
+The reason I chose this particular tutorial was because it used the tech stack that we would be adopting (Typescript and graphql). This involved setting up a Firebase db. How they set up the GraphQL queries via Stepzen was interesting, the result of which can be found in `stepzen/order/index.graphql` and `stepzen/trackingItems/index.graphql`:
+![StepZen](/images/stepzen_terminal_commands.png)
+
+There was some magic code involved with something called a `@materializer` that did some hand wavy association between models, and if all goes well with how you hook them up you get the following after running `stepzen start`:
+![StepZen2](/images/stepzen_2.png)
+
+
+  Core Components learned:
+
+  Hooks learned:
+  - import {useTailwind} from 'tailwind-rn';
+  - import { gql, useQuery } from '@apollo/client';
+
+  Navigation modules learned:
+  - import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+  - import { createNativeStackNavigator } from '@react-navigation/native-stack';
+  - import { NavigationContainer } from '@react-navigation/native';
 
 
 ### ChatGPT results for React Native key learning objective
 
-Section Title	Key Learning Objectives
+<!-- Section Title	Key Learning Objectives
 Introduction to React Native	- Understand the basics of React Native and its architecture <br> - Understand the differences between React and React Native
 Setting up your development environment	- Install and configure necessary tools for React Native development
 Building user interfaces with React Native	- Create and style components <br> - Use Flexbox for layout <br> - Understand the component lifecycle
@@ -72,9 +95,9 @@ Beginner	Weather App	Build a weather app that uses an API to fetch weather data 
 Intermediate	To-Do List	Build a to-do list app that includes functionality for adding, editing, and deleting tasks, which includes managing data with Redux, implementing navigation, and working with asynchronous storage
 Intermediate	Instagram Clone	Build an Instagram clone app that includes features like posting images, adding captions, and liking posts, which includes integrating with a backend API, handling authentication, and managing complex data structures
 Advanced	E-commerce App	Build an e-commerce app that includes features like browsing products, adding items to a shopping cart, and checking out, which includes integrating with a complex API, building custom animations, and handling complex user flows
-Advanced	Video Streaming App	Build a video streaming app that includes features like streaming live and on-demand videos, managing user subscriptions, and handling payments, which includes working with advanced media APIs, integrating with third-party services, and handling complex user data
+Advanced	Video Streaming App	Build a video streaming app that includes features like streaming live and on-demand videos, managing user subscriptions, and handling payments, which includes working with advanced media APIs, integrating with third-party services, and handling complex user data -->
 
-#### Heading 4
+<!-- #### Heading 4
 
 - Bullet
 
@@ -87,5 +110,5 @@ Advanced	Video Streaming App	Build a video streaming app that includes features 
 ![Image](/images/syftr-profile-pic.png)
 
 Horizontal rule:
-***
+*** -->
 
