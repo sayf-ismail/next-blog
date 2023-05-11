@@ -19,18 +19,28 @@ To assist me I've made use of:
   - "nativeEmmet" for code snippets
   - "Github Copilot" for autocompletion of code, which actually has been trained on many public tutorials... check it out:
 ![github copilot in action](/images/copilot_demo.gif)
-- Course: [React Native - The Practical Guide \[2023\]
-](https://www.udemy.com/course/react-native-the-practical-guide/){width}
 
+### Course: [React Native - The Practical Guide \[2023\]
+](https://www.udemy.com/course/react-native-the-practical-guide/)
+
+#### Key learnings:
+- TextInput field prop: [Keyboard type](https://reactnative.dev/docs/textinput)
+
+Projects:
+- Goals App
+- "Guess my Number" Game App
 
 ### Tutorial - [NFT Marketplace Course](https://youtu.be/_ivIUCSOZ78)
 
 This was a basic react native app that gave exposure into basic UI/UX manipulation. One thing I enjoyed learning here was the way the presenter organised his assets, screens and layouts. His predefined COLORS, SHADOWS, FONTS and other assets really helped keep the code clean, making it a pleasure to build.
 
+Link to [Github Repo](https://github.com/sayf-ismail/react-native-nft-marketplace/tree/main)
+
+
 To try out the app, first download Expo Go here:
 
 [Demo App](https://expo.dev/@sayfcodes/nft_marketplace?serviceType=classic&distribution=expo-go)
-![NFT Marketplace gif](/images/nft_mktplace.gif)
+![NFT Marketplace gif](/images/nft_mktplace_giphy.gif)
 
   Core Components learned:
   - import {
@@ -55,23 +65,110 @@ To try out the app, first download Expo Go here:
 
 ### Tutorial - [UPS 2.0](https://www.youtube.com/live/hvvWv2GLWss?feature=share)
 
+![UPS gif](/images/ups_giphy.gif)
+
 The reason I chose this particular tutorial was because it used the tech stack that we would be adopting (Typescript and graphql). This involved setting up a Firebase db. How they set up the GraphQL queries via Stepzen was interesting, the result of which can be found in `stepzen/order/index.graphql` and `stepzen/trackingItems/index.graphql`:
 ![StepZen](/images/stepzen_terminal_commands.png)
 
 There was some magic code involved with something called a `@materializer` that did some hand wavy association between models, and if all goes well with how you hook them up you get the following after running `stepzen start`:
 ![StepZen2](/images/stepzen_2.png)
 
+Link to [Github Repo](https://github.com/sayf-ismail/react-native-ups-clone)
+
+Link to sample json [data](https://github.com/sonnysangha/UPS-2.0-Sample-Data/blob/main/sample_data.json)
+#### Github repo instructions
+- `stepzen start`
+- `npm run dev:tailwind`
+- `expo start`
+
+#### Using NavigationContainer, createNativeStackNavigator, useNavigation
+
+When inspecting the `RootNavigator.tsx` file we create children of navigator components with [Groups](https://reactnavigation.org/docs/group/) to represent several groups of screens inside a navigator (which, in turn, you can further configure screens with [screenOptions](https://reactnavigation.org/docs/screen-options/)). In this example the groups are:
+- the Main screens that include the TabNavigator,
+- ModalScreen
+- OrderScreen
+
+```tsx
+import { View, Text } from 'react-native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import TabNavigator from './TabNavigator';
+import ModalScreen from '../screens/ModalScreen';
+
+export type RootStackParamList = {
+  Main: undefined; // no props
+  MyModal: { userId: string; name: string};
+  Order: { order: any }; // todo: define order type
+}
+
+const RootStack = createNativeStackNavigator<RootStackParamList>();
+
+const RootNavigator = () => {
+  return (
+    <RootStack.Navigator>
+      <RootStack.Group>
+        <RootStack.Screen name="Main" component={TabNavigator} />
+      </RootStack.Group>
+
+      <RootStack.Group screenOptions={{
+        presentation: "modal",
+      }}>
+        <RootStack.Screen options={{ headerShown: false }} name="MyModal" component={ModalScreen} />
+      </RootStack.Group>
+    </RootStack.Navigator>
+  )
+}
+export default RootNavigator
+```
+#### Creating Maps
+- `expo install react-native-maps`
+- import MapView, { Marker } from 'react-native-maps'
+- in `DeliveryCard.tsx`:
+```tsx
+      <MapView
+        initialRegion={{
+          latitude: order.Lat,
+          longitude: order.Lng,
+          latitudeDelta: 0.005,
+          longitudeDelta: 0.005,
+        }}
+        style={[tw("w-full "), { height: 200 }]}
+      >
+        {order.Lat && order.Lng && (
+          <Marker
+            coordinate={{
+              latitude: order.Lat,
+              longitude: order.Lng
+            }}
+            title="Delivery Location"
+            description={order.Address}
+            identifier='destination'
+          />
+        )}
+      </MapView>
+```
+
+#### Nested Types!
+
+```tsx
+export type OrdersScreenNavigationProp = CompositeNavigationProp<BottomTabNavigationProp<TabStackParamList, "Orders">, NativeStackNavigationProp<RootStackParamList>>
+
+export type CustomerScreenNavigationProp = CompositeNavigationProp<BottomTabNavigationProp<TabStackParamList, 'Customers'>,NativeStackNavigationProp<RootStackParamList>>;
+
+type ModalScreenNavigationProp = CompositeNavigationProp<BottomTabNavigationProp<TabStackParamList>, NativeStackNavigationProp<RootStackParamList, "MyModal">>
+```
 
   Core Components learned:
 
   Hooks learned:
-  - import {useTailwind} from 'tailwind-rn';
+  - import { useTailwind } from 'tailwind-rn';
   - import { gql, useQuery } from '@apollo/client';
 
   Navigation modules learned:
   - import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
   - import { createNativeStackNavigator } from '@react-navigation/native-stack';
   - import { NavigationContainer } from '@react-navigation/native';
+    - const navigation = useNavigation<CustomerScreenNavigationProp>();
+    - (MODALS!) `<TouchableOpacity onPress={() => navigation.navigate('MyModal', {name: name, userId: userId})}>`
 
 
 ### ChatGPT results for React Native key learning objective
