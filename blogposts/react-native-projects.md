@@ -171,7 +171,30 @@ type ModalScreenNavigationProp = CompositeNavigationProp<BottomTabNavigationProp
     - (MODALS!) `<TouchableOpacity onPress={() => navigation.navigate('MyModal', {name: name, userId: userId})}>`
 
 
-### ChatGPT results for React Native key learning objective
+### Tutorial - [To-do List w/push notifications, global state management & navigation](https://youtu.be/bES5bMSL54M)
+
+This lesson has push notifications by [NativeNotify](https://app.nativenotify.com) which involved a simple one liner added to the `App()` functional component:
+
+```tsx
+  registerNNPushToken(7906, '8eUxkdUkqd3AyXffe9b7aT');
+```
+
+Global state management - first we set up the hooks and state variables
+
+Typescript was my attempt despite the lesson being in normal JS.
+
+Link to [Github Repo](https://github.com/sayf-ismail/react-native-push-notifications)
+
+![To-do List gif](/images/todo-list-giphy.gif)
+
+  Core Components learned:
+
+
+  Hooks learned:
+
+
+  Others:
+  - [Box shadow generator](https://ethercreative.github.io/react-native-shadow-generator/)
 
 <!-- Section Title	Key Learning Objectives
 Introduction to React Native	- Understand the basics of React Native and its architecture <br> - Understand the differences between React and React Native
