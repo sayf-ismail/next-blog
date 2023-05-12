@@ -30,7 +30,7 @@ Projects:
 - Goals App
 - "Guess my Number" Game App
 
-### Tutorial - [NFT Marketplace Course](https://youtu.be/_ivIUCSOZ78)
+### Tutorial 1 - [NFT Marketplace Course](https://youtu.be/_ivIUCSOZ78)
 
 This was a basic react native app that gave exposure into basic UI/UX manipulation. One thing I enjoyed learning here was the way the presenter organised his assets, screens and layouts. His predefined COLORS, SHADOWS, FONTS and other assets really helped keep the code clean, making it a pleasure to build.
 
@@ -63,7 +63,7 @@ To try out the app, first download Expo Go here:
   - import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
   - import { useFonts } from 'expo-font';
 
-### Tutorial - [UPS 2.0](https://www.youtube.com/live/hvvWv2GLWss?feature=share)
+### Tutorial 2 - [UPS 2.0](https://www.youtube.com/live/hvvWv2GLWss?feature=share)
 
 ![UPS gif](/images/ups_giphy.gif)
 
@@ -171,7 +171,7 @@ type ModalScreenNavigationProp = CompositeNavigationProp<BottomTabNavigationProp
     - (MODALS!) `<TouchableOpacity onPress={() => navigation.navigate('MyModal', {name: name, userId: userId})}>`
 
 
-### Tutorial - [To-do List w/push notifications, global state management & navigation](https://youtu.be/bES5bMSL54M)
+### Tutorial 3 - [To-do List w/push notifications, global state management & navigation](https://youtu.be/bES5bMSL54M)
 
 This lesson has push notifications by [NativeNotify](https://app.nativenotify.com) which involved a simple one liner added to the `App()` functional component:
 
@@ -195,6 +195,61 @@ Link to [Github Repo](https://github.com/sayf-ismail/react-native-push-notificat
 
   Others:
   - [Box shadow generator](https://ethercreative.github.io/react-native-shadow-generator/)
+
+
+### Tutorial 4 - [Multi Step Form](https://youtu.be/5KMxSOhrFAw)
+
+This lesson has was a bit of a challenge as I think the presenter was speaking Hindi (thankfully with English subtitles!). But really simple React without using any 3rd party libraries!
+
+In a `Form.js` component, his approach was to create a single state object called `formData` which would continue to be updated with `setFormData` as the user progressed through the multiple form pages.
+
+We create a numeric state variable to track where the user is in terms of navigation, called `screen`.
+
+Then we create an object for `FormTitle`, with each screen's title to be called with the `screen` state variable.
+
+The `Form.js` component is used in the `App.js` root.
+
+Then we create a button using the `Pressable` object from the `react-native` module.
+
+Next we create a function called `ScreenDisplay` and place conditions for what screens should be rendered with each `screen` state.
+  - change the onPress(es) to setScreen with tracking prop and increament/decrement by 1;
+  - disable it if state variable `screen === 0`
+
+Then we send our form states to all of our components as props, and when adding/updating data through the TextInput objects, remember to use the spread operator to keep our state saved if we change anything else in our next component!
+
+On the last screen, we can ensure the button says "Submit" with the following in `Form.js`:
+```jsx
+        <Pressable
+          onPress={() => {setScreen((currScreen) => currScreen + 1)}}
+          disabled={screen === FormTitle.length - 1}
+        >
+          <Text style={styles.button}>{ screen === FormTitle.length - 1 ? "Submit" : "Next"}</Text>
+        </Pressable>
+```
+
+Question: how are we going to render the button functionality to render it if it's on submit state?
+Answer:
+```jsx
+        <Pressable
+          onPress={() => {
+            if (screen === FormTitle.length - 1) {
+              console.log(formData);
+            } else {
+              setScreen((currScreen) => currScreen + 1)
+            }
+          }}
+        >
+          <Text style={styles.button}>
+            { screen === FormTitle.length - 1 ? "Submit" : "Next"}
+          </Text>
+        </Pressable>
+```
+
+Link to [Github Repo](https://github.com/sayf-ismail/react-multi-step-form1)
+
+![Multi Step Form gif](/images/multi-step-form-giphy.gif)
+
+
 
 <!-- Section Title	Key Learning Objectives
 Introduction to React Native	- Understand the basics of React Native and its architecture <br> - Understand the differences between React and React Native
